@@ -2,7 +2,8 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-;; LocalWords:  SPC OSX dired pdf kb ack whitespace ag rg aspell init usr
+;; LocalWords:  SPC OSX dired pdf kb ack whitespace ag rg aspell init usr setq
+;; LocalWords:  HTTPS Spacelpa ELPA README
 
 (defun dotspacemacs/layers ()
   "Layer configuration:
