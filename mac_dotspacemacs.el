@@ -2,7 +2,7 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-; LocalWords:  SPC
+;; LocalWords:  SPC OSX dired pdf kb ack whitespace ag rg aspell init usr
 
 (defun dotspacemacs/layers ()
   "Layer configuration:
@@ -257,8 +257,6 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
-
-; LocalWords:  OSX dired pdf kb
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
@@ -323,12 +321,6 @@ It should only modify the values of Spacemacs settings."
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
    dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
-
-; LocalWords:  ack whitespace README
-
-
-; LocalWords:  ag
-; LocalWords:  rg
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
@@ -377,10 +369,6 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq ispell-program-name "/usr/local/bin/aspell")
   (setq ispell-dictionary "es")
-
-
-; LocalWords:  aspell init
-; LocalWords:  usr
   (setq ispell-local-dictionary "es")
   (setq mac-option-key-is-meta nil)
   (setq mac-command-key-is-meta t)
