@@ -68,6 +68,7 @@ This function should only modify configuration layer settings."
      emoji
      semantic
      pdf-tools
+     c-c++
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
