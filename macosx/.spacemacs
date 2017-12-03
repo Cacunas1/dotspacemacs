@@ -54,9 +54,11 @@ This function should only modify configuration layer settings."
                      spell-checking-enable-auto-dictionary t)
      syntax-checking
      version-control
+     ;; Mac OSX specifics <begin>
      (osx :variables
           osx-use-option-as-meta nil
           osx-use-command-as-meta t)
+     ;; Mac OSX specifics <end>
      latex
      python
      ipython-notebook
@@ -69,12 +71,16 @@ This function should only modify configuration layer settings."
      semantic
      pdf-tools
      c-c++
+     github
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(exec-path-from-shell)
+   dotspacemacs-additional-packages '(
+                                      exec-path-from-shell
+                                      magithub
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -369,6 +375,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  ;; Mac OSX specifics <begin>
   (setq ispell-program-name "/usr/local/bin/aspell")
   (setq ispell-dictionary "es")
   (setq ispell-local-dictionary "es")
@@ -376,11 +383,15 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq mac-command-key-is-meta t)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
+  ;; Mac OSX specifics <end>
   (setq python-enable-yapf-format-on-save t)
   (setq python-sort-imports-on-save t)
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
     (exec-path-from-shell-copy-env "PATH"))
+  (use-package magithub
+    :after magit
+    :config (magithub-feature-autoinject t))
 )
 
 (defun dotspacemacs/user-config ()
@@ -389,10 +400,12 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; Mac OSX specifics <begin>
   (setq mac-option-key-is-meta nil)
   (setq mac-command-key-is-meta t)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
+  ;; Mac OSX specifics <end>
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -409,7 +422,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (auctex-latexmk yapfify yaml-mode xterm-color ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe vala-snippets vala-mode uuidgen use-package unfill toc-org thrift symon swift-mode string-inflection stickyfunc-enhance stan-mode srefactor spaceline smeargle shell-pop scad-mode reveal-in-osx-finder restart-emacs rainbow-delimiters qml-mode pyvenv pytest pyenv-mode py-isort popwin pkgbuild-mode pip-requirements persp-mode pcre2el pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree mwim multi-term move-text mmm-mode matlab-mode markdown-toc magit-gitflow macrostep lorem-ipsum logcat livid-mode live-py-mode linum-relative link-hint launchctl kivy-mode julia-mode json-mode js2-refactor js-doc info+ indent-guide hy-mode hungry-delete htmlize hoon-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emojify emoji-cheat-sheet-plus elisp-slime-nav ein editorconfig ebuild-mode dumb-jump diff-hl cython-mode company-tern company-statistics company-emoji company-auctex company-anaconda column-enforce-mode coffee-mode clean-aindent-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (realgud test-simple loc-changes load-relative magithub ghub+ apiwrap ghub magit-gh-pulls github-search github-clone gist gh marshal logito pcache disaster company-c-headers cmake-mode cmake-ide levenshtein clang-format yapfify yaml-mode xterm-color ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe vala-snippets vala-mode uuidgen use-package unfill toc-org thrift symon swift-mode string-inflection stickyfunc-enhance stan-mode srefactor spaceline smeargle shell-pop scad-mode reveal-in-osx-finder restart-emacs rainbow-delimiters qml-mode pyvenv pytest pyenv-mode py-isort popwin pkgbuild-mode pip-requirements persp-mode pdf-tools pcre2el pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree mwim multi-term move-text mmm-mode matlab-mode markdown-toc magit-gitflow macrostep lorem-ipsum logcat livid-mode live-py-mode linum-relative link-hint launchctl kivy-mode julia-mode json-mode js2-refactor js-doc info+ indent-guide hy-mode hungry-delete htmlize hoon-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emojify emoji-cheat-sheet-plus elisp-slime-nav ein editorconfig ebuild-mode dumb-jump diff-hl cython-mode company-tern company-statistics company-emoji company-auctex company-anaconda column-enforce-mode coffee-mode clean-aindent-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
