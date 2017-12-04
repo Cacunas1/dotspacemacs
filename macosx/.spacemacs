@@ -417,6 +417,14 @@ before packages are loaded."
                     (org :variables org-enable-reveal-js-support t)
                     )
                   )
+    (setq org-directory "~/Dropbox/orgzly")
+    (setq org-agenda-files '("~/Dropbox/orgzly/"))
+    (setq org-default-notes-file (concat org-directory "/notes.org"))
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline (concat org-directory "gtd.org") "Tasks")
+             "* TODO %?\n  %i\n  %a")
+            ("j" "Journal" entry (file+olp+datetree (concat org-directory "journal.org"))
+             "* %?\nEntered on %U\n  %i\n  %a")))
     ;; allow for export=>beamer by placing
 
     ;; #+LaTeX_CLASS: beamer in org files
