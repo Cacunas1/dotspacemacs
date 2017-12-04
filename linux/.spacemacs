@@ -358,6 +358,14 @@ you should place your code here."
                     (org :variables org-enable-reveal-js-support t)
                     )
                   )
+    (setq org-directory "~/Dropbox/orgzly")
+    (setq org-agenda-files '("~/Dropbox/orgzly/"))
+    (setq org-default-notes-file (concat org-directory "/notes.org"))
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline (concat org-directory "gtd.org") "Tasks")
+             "* TODO %?\n  %i\n  %a")
+            ("j" "Journal" entry (file+olp+datetree (concat org-directory "journal.org"))
+             "* %?\nEntered on %U\n  %i\n  %a")))
     ;; allow for export=>beamer by placing
 
     ;; #+LaTeX_CLASS: beamer in org files
@@ -418,18 +426,21 @@ you should place your code here."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(package-selected-packages
-     (quote
-      (symon string-inflection password-generator org-category-capture org-brain dash-functional helm-purpose window-purpose imenu-list evil-org evil-lion request-deferred editorconfig browse-at-remote yapfify xterm-color unfill swift-mode smeargle shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements orgit org-projectile org-present org-pomodoro alert log4e gntp org-download nix-mode mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode hy-mode htmlize helm-pydoc helm-nixos-options helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help ein skewer-mode deferred websocket js2-mode simple-httpd diff-hl cython-mode company-statistics company-nixos-options nixos-options company-auctex company-anaconda company auto-yasnippet yasnippet auto-dictionary auctex-latexmk auctex anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+    ("~/mega/Main/formal/universidad/mallas curriculares/Ingeniería Civil Electrónica/utfsm/cursos/[hrw102] Visión Inmanente del Quehacer Humano/apuntes_clases.org" "~/mega/Main/formal/universidad/mallas curriculares/Ingeniería Civil Electrónica/utfsm/cursos/[iln230] Ingeniería Económica/apuntes/apuntes_clases.org" "~/mega/Main/formal/universidad/mallas curriculares/Ingeniería Civil Electrónica/utfsm/cursos/[icn345] Administración de la Producción/apuntes/apuntes_propios.org" "~/mega/Main/formal/universidad/mallas curriculares/Ingeniería Civil Electrónica/utfsm/cursos/[icn345] Administración de la Producción/apuntes/apuntes_clases.org")))
+ '(package-selected-packages
+   (quote
+    (yaml-mode web-beautify vala-snippets vala-mode thrift stickyfunc-enhance stan-mode srefactor scad-mode realgud test-simple loc-changes load-relative qml-mode pkgbuild-mode pdf-tools tablist matlab-mode magithub ghub+ apiwrap ghub magit-gh-pulls logcat livid-mode kivy-mode julia-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc hoon-mode github-search github-clone gist gh marshal logito pcache emojify ht emoji-cheat-sheet-plus ebuild-mode disaster company-tern tern company-emoji company-c-headers coffee-mode cmake-mode cmake-ide levenshtein clang-format auto-yasnippet arduino-mode yapfify xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org symon swift-mode string-inflection spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el password-generator paradox orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file nix-mode neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-nixos-options helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav ein editorconfig dumb-jump diminish diff-hl define-word cython-mode company-statistics company-nixos-options company-auctex company-anaconda column-enforce-mode clean-aindent-mode browse-at-remote auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
