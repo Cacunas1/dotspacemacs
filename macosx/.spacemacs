@@ -39,7 +39,10 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+      )
      better-defaults
      emacs-lisp
      git
@@ -379,8 +382,6 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Mac OSX specifics <begin>
   (setq ispell-program-name "/usr/local/bin/aspell")
-  (setq ispell-dictionary "es")
-  (setq ispell-local-dictionary "es")
   (setq mac-option-key-is-meta nil)
   (setq mac-command-key-is-meta t)
   (setq mac-command-modifier 'meta)
@@ -408,25 +409,31 @@ before packages are loaded."
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
   ;; Mac OSX specifics <end>
+  ;; Org-mode configuration
   (with-eval-after-load 'org
-    ;; here goes your Org config :)
-    ;; ....
+    ;; org layer configuration
     (setq-default dotspacemacs-configuration-layers
                   '(
-                    (org :variables org-enable-github-support t)
-                    (org :variables org-enable-reveal-js-support t)
+                    (org :variables
+                         org-enable-github-support t
+                         org-enable-reveal-js-support t
+                         ;; Org journal configuration
+                         org-enable-org-journal-support t
+                         org-journal-dir "~/Dropbox/orgzly/journal/"
+                         ;; Org agenda configuration
+                         org-directory "~/Dropbox/orgzly"
+                         org-agenda-files '("~/Dropbox/orgzly/")
+                         org-default-notes-file (concat org-directory "/notes.org")
+                         )
                     )
                   )
-    (setq org-directory "~/Dropbox/orgzly")
-    (setq org-agenda-files '("~/Dropbox/orgzly/"))
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
-    (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline (concat org-directory "gtd.org") "Tasks")
-             "* TODO %?\n  %i\n  %a")
-            ("j" "Journal" entry (file+olp+datetree (concat org-directory "journal.org"))
-             "* %?\nEntered on %U\n  %i\n  %a")))
+    ;; (setq org-capture-templates
+    ;;       '(("t" "Todo" entry (file+headline (concat org-directory "gtd.org") "Tasks")
+    ;;          "* TODO %?\n  %i\n  %a")
+    ;;         ("j" "Journal" entry (file+olp+datetree (concat org-directory "journal.org"))
+    ;;          "* %?\nEntered on %U\n  %i\n  %a")))
+    ;; beamer configuration
     ;; allow for export=>beamer by placing
-
     ;; #+LaTeX_CLASS: beamer in org files
     (unless (boundp 'org-export-latex-classes)
       (setq org-export-latex-classes nil))
@@ -487,18 +494,18 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(package-selected-packages
-     (quote
-      (realgud test-simple loc-changes load-relative magithub ghub+ apiwrap ghub magit-gh-pulls github-search github-clone gist gh marshal logito pcache disaster company-c-headers cmake-mode cmake-ide levenshtein clang-format yapfify yaml-mode xterm-color ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe vala-snippets vala-mode uuidgen use-package unfill toc-org thrift symon swift-mode string-inflection stickyfunc-enhance stan-mode srefactor spaceline smeargle shell-pop scad-mode reveal-in-osx-finder restart-emacs rainbow-delimiters qml-mode pyvenv pytest pyenv-mode py-isort popwin pkgbuild-mode pip-requirements persp-mode pdf-tools pcre2el pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree mwim multi-term move-text mmm-mode matlab-mode markdown-toc magit-gitflow macrostep lorem-ipsum logcat livid-mode live-py-mode linum-relative link-hint launchctl kivy-mode julia-mode json-mode js2-refactor js-doc info+ indent-guide hy-mode hungry-delete htmlize hoon-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emojify emoji-cheat-sheet-plus elisp-slime-nav ein editorconfig ebuild-mode dumb-jump diff-hl cython-mode company-tern company-statistics company-emoji company-auctex company-anaconda column-enforce-mode coffee-mode clean-aindent-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (auctex-latexmk yapfify yaml-mode xterm-color ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe vala-snippets vala-mode uuidgen use-package unfill toc-org thrift symon swift-mode string-inflection stickyfunc-enhance stan-mode srefactor spaceline smeargle shell-pop scad-mode reveal-in-osx-finder restart-emacs realgud rainbow-delimiters qml-mode pyvenv pytest pyenv-mode py-isort popwin pkgbuild-mode pip-requirements persp-mode pdf-tools pcre2el pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree mwim multi-term move-text mmm-mode matlab-mode markdown-toc magithub magit-gitflow magit-gh-pulls macrostep lorem-ipsum logcat livid-mode live-py-mode linum-relative link-hint launchctl kivy-mode julia-mode json-mode js2-refactor js-doc info+ indent-guide hy-mode hungry-delete htmlize hoon-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emojify emoji-cheat-sheet-plus elisp-slime-nav ein editorconfig ebuild-mode dumb-jump disaster diff-hl cython-mode company-tern company-statistics company-quickhelp company-emoji company-c-headers company-auctex company-anaconda column-enforce-mode coffee-mode cmake-mode cmake-ide clean-aindent-mode clang-format browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
