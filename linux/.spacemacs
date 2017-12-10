@@ -37,7 +37,10 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+     )
      better-defaults
      emacs-lisp
      git
@@ -354,20 +357,25 @@ you should place your code here."
     ;; ....
     (setq-default dotspacemacs-configuration-layers
                   '(
-                    (org :variables org-enable-github-support t)
-                    (org :variables org-enable-reveal-js-support t)
+                    (org :variables
+                         org-enable-github-support t
+                         org-enable-reveal-js-support t
+                         ;; Org journal configuration
+                         org-enable-org-journal-support t
+                         org-journal-dir "~/Dropbox/orgzly/journal/"
+                         ;; Org agenda configuration
+                         org-directory "~/Dropbox/orgzly"
+                         org-agenda-files '("~/Dropbox/orgzly/")
+                         org-default-notes-file (concat org-directory "/notes.org")
+                         )
                     )
                   )
-    (setq org-directory "~/Dropbox/orgzly")
-    (setq org-agenda-files '("~/Dropbox/orgzly/"))
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
-    (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline (concat org-directory "gtd.org") "Tasks")
-             "* TODO %?\n  %i\n  %a")
-            ("j" "Journal" entry (file+olp+datetree (concat org-directory "journal.org"))
-             "* %?\nEntered on %U\n  %i\n  %a")))
+    ;; (setq org-capture-templates
+    ;;       '(("t" "Todo" entry (file+headline (concat org-directory "gtd.org") "Tasks")
+    ;;          "* TODO %?\n  %i\n  %a")
+    ;;         ("j" "Journal" entry (file+olp+datetree (concat org-directory "journal.org"))
+    ;;          "* %?\nEntered on %U\n  %i\n  %a")))
     ;; allow for export=>beamer by placing
-
     ;; #+LaTeX_CLASS: beamer in org files
     (unless (boundp 'org-export-latex-classes)
       (setq org-export-latex-classes nil))
